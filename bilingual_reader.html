@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>双语对照阅读 · Chapter I</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: "Playfair Display", "Noto Serif SC", "Georgia", "Times New Roman", serif;
+            background: #f7f5f0;
+            color: #2a2a2a;
+            line-height: 1.85;
+        }
+
+        .header {
+            text-align: center;
+            padding: 30px 20px 10px;
+            background: #f7f5f0;
+            border-bottom: 1px solid #e0d8cc;
+        }
+
+        .header h1 {
+            font-size: 22px;
+            font-weight: 600;
+            color: #5a4a3a;
+            letter-spacing: 3px;
+            font-style: italic;
+        }
+
+        .header .subtitle {
+            font-size: 13px;
+            color: #9a8b7a;
+            margin-top: 6px;
+            letter-spacing: 2px;
+        }
+
+        .container {
+            display: flex;
+            max-width: 1300px;
+            margin: 0 auto;
+            min-height: calc(100vh - 100px);
+        }
+
+        .column {
+            flex: 1;
+            padding: 30px 40px 60px;
+        }
+
+        .column-left {
+            border-right: 1px solid #e0d8cc;
+            background: #fdfcf8;
+        }
+
+        .column-right {
+            background: #f5f2ec;
+        }
+
+        .col-title {
+            text-align: center;
+            font-size: 12px;
+            color: #a09080;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #e8e0d4;
+        }
+
+        .col-title-left {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .font-select {
+            font-size: 11px;
+            padding: 3px 8px;
+            background: transparent;
+            border: 1px solid #d8cfc4;
+            border-radius: 4px;
+            color: #7a6a5a;
+            cursor: pointer;
+            outline: none;
+            letter-spacing: 0;
+            text-transform: none;
+            font-family: "Playfair Display", "Noto Serif SC", "Georgia", serif;
+            transition: border-color 0.2s;
+        }
+
+        .font-select:hover { border-color: #b8a890; }
+        .font-select:focus { border-color: #c4a882; }
+
+        .page-marker {
+            text-align: center;
+            font-size: 11px;
+            color: #c0b0a0;
+            letter-spacing: 3px;
+            margin: 35px 0 20px;
+            position: relative;
+        }
+
+        .page-marker::before,
+        .page-marker::after {
+            content: "";
+            display: inline-block;
+            width: 40px;
+            height: 1px;
+            background: #d8cfc4;
+            vertical-align: middle;
+            margin: 0 12px;
+        }
+
+        .paragraph {
+            margin-bottom: 18px;
+            padding: 14px 18px;
+            border-radius: 8px;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: default;
+            position: relative;
+        }
+
+        .column-left .paragraph {
+            font-size: 15.5px;
+            line-height: 1.9;
+            color: #3a3a3a;
+        }
+
+        .column-right .paragraph {
+            font-size: 15px;
+            line-height: 1.95;
+            color: #4a4a4a;
+        }
+
+        .paragraph::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 10%;
+            bottom: 10%;
+            width: 3px;
+            border-radius: 2px;
+            transition: background 0.35s ease;
+        }
+
+        .column-left .paragraph:hover {
+            background: #ede8de;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+        }
+
+        .column-left .paragraph:hover::before {
+            background: #b8a890;
+        }
+
+        .column-right .paragraph:hover {
+            background: #e8e2d6;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+        }
+
+        .column-right .paragraph:hover::before {
+            background: #c4a882;
+        }
+
+        .sentence {
+            transition: background 0.25s ease, box-shadow 0.25s ease;
+            border-radius: 3px;
+            padding: 1px 2px;
+            cursor: default;
+        }
+
+        .column-left .sentence.highlight {
+            background: #e8dcc8;
+            box-shadow: 0 0 0 2px #c8b090, 0 4px 12px rgba(0,0,0,0.06);
+        }
+
+        .column-right .sentence.highlight {
+            background: #e8dcc8;
+            box-shadow: 0 0 0 2px #c8b090, 0 4px 12px rgba(0,0,0,0.06);
+        }
+
+        .vocab {
+            color: #8B5E3C;
+            border-bottom: 1px dashed #c4a882;
+            cursor: help;
+            position: relative;
+            transition: color 0.2s;
+        }
+
+        .vocab:hover {
+            color: #5a3a1a;
+        }
+
+        .vocab .tooltip {
+            visibility: hidden;
+            opacity: 0;
+            position: absolute;
+            z-index: 100;
+            bottom: calc(100% + 10px);
+            left: 50%;
+            transform: translateX(-50%) translateY(4px);
+            background: #fffdf8;
+            border: 1px solid #d4b896;
+            color: #3a3a3a;
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-size: 13px;
+            line-height: 1.6;
+            font-family: "Noto Serif SC", "Georgia", serif;
+            white-space: normal;
+            width: 280px;
+            max-width: 80vw;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+            pointer-events: none;
+            transition: opacity 0.25s ease, transform 0.25s ease;
+        }
+
+        .vocab .tooltip::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -6px;
+            border-width: 6px 6px 0;
+            border-style: solid;
+            border-color: #d4b896 transparent transparent;
+        }
+
+        .vocab .tooltip::before {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px 5px 0;
+            border-style: solid;
+            border-color: #fffdf8 transparent transparent;
+            z-index: 1;
+        }
+
+        .vocab:hover .tooltip {
+            visibility: visible;
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        @media (max-width: 900px) {
+            .container { flex-direction: column; }
+            .column-left { border-right: none; border-bottom: 1px solid #e0d8cc; }
+            .column { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Chapter I</h1>
+        <div class="subtitle">鼠标悬停句子，左右高亮对照 · 重点词汇悬停查看详解</div>
+    </div>
+
+    <div class="container">
+        <div class="column column-left">
+            <div class="col-title col-title-left">
+                <span>English</span>
+                <select class="font-select" id="font-select">
+                    <option value="'Playfair Display', 'Georgia', serif">Playfair Display</option>
+                    <option value="Georgia, serif">Georgia</option>
+                    <option value="'Times New Roman', serif">Times New Roman</option>
+                    <option value="Garamond, serif">Garamond</option>
+                    <option value="'Palatino Linotype', serif">Palatino</option>
+                    <option value="'Book Antiqua', serif">Book Antiqua</option>
+                </select>
+            </div>
+            <div id="en-container"></div>
+        </div>
+        <div class="column column-right">
+            <div class="col-title">中文</div>
+            <div id="zh-container"></div>
+        </div>
+    </div>
+
+<script>
+const vocab = {
+    'Credence': 'Credence（克丽登丝）—— 本词原意为"相信、信任"，用作女主角姓氏暗含讽刺：她已无法信任任何人。',
+    'Joy': 'Joy（乔伊）—— 姓氏，原意为"快乐"，与主角痛苦压抑的处境形成强烈反差。',
+    'Ruby': 'Ruby（露比）—— 女主角的艺名，原意为"红宝石"，暗示她被当作珍奇之物展览、被凝视的命运。',
+    'unsettled': '不安的，不稳定的 —— 感到焦虑、无法平静，内心动荡。',
+    'paranoid': '多疑的，偏执的 —— 毫无根据地怀疑他人，认为所有人都在盯着自己。',
+    'contradictory': '矛盾的，相互冲突的 —— 指内心同时存在截然相反的念头，无法自洽。',
+    'dilapidated': '破旧的，年久失修的 —— 建筑因长期无人维护而衰败破损。',
+    'picturesque': '如诗如画的，风景优美的 —— 美得像一幅画。',
+    'throbbing': '抽痛的，搏动的 —— 一阵阵脉动般地疼痛（如太阳穴跳痛）。',
+    'socket': '眼窝，插座 —— 在文中指 eye socket（眼眶），暗示她失去了一只眼睛的创伤。',
+    'leotard': '紧身连体衣 —— 杂技、舞蹈演员穿着的弹性紧身服装。',
+    'savage': '野性的，未驯服的 —— 原始、粗犷而美丽，带有危险的美感。',
+    'costume': '戏服，演出服 —— 舞台表演时穿的特定服装。',
+    'eyepatch': '眼罩 —— 遮住受伤或失明眼睛的布制罩子。',
+    'cheekbone': '颧骨 —— 眼睛下方、脸颊侧面的骨骼。',
+    'whiskers': '(猫/狮)胡须 —— 文中指化妆画出的动物胡须线条。',
+    'crimson': '深红色，绯红 —— Mr. Crimsons 姓氏的来源，也是小丑鼻子的经典颜色。',
+    'mask': '面具 / 伪装 —— 全文核心意象，既可指遮脸的面具，也隐喻隐藏真实自我的伪装。',
+    'clown': '小丑 —— 马戏团中以夸张妆容和滑稽表演取悦观众的演员。',
+    'circus': '马戏团 —— 巡回演出的杂技、动物表演团。',
+    'grinning': '咧嘴笑的 —— 笑容夸张地咧到脸颊，形容画上去的笑脸妆容。',
+    'furrow': '皱(眉)，起皱纹 —— furrow one\'s brows 皱眉，表示困惑或担忧。',
+    'startled': '受惊的，被吓一跳的 —— 被突如其来的触碰或声音惊到。',
+    'trembling': '颤抖的，发抖的 —— 因恐惧、年迈或虚弱而身体不由自主地抖动。',
+    'dressing room': '化妆室，更衣室 —— 演员上场前化妆和换服装的房间。',
+    'puzzled': '困惑的，迷惑不解的 —— 感到疑惑，想不明白。',
+    'relentlessly': '不懈地，不停地 —— 毫不放松地、持续地（做某事）。',
+    'foggy': '模糊的，有雾的 —— 文中形容老年人浑浊的视力。',
+    'hectic': '忙乱的，手忙脚乱的 —— 紧张忙乱、充满混乱活动的。',
+    'disheartened': '沮丧的，灰心的 —— 因失望而意志消沉。',
+    'distressed': '痛苦的，忧虑的 —— 感到极度焦虑或悲伤。',
+};
+
+function splitEn(text) {
+    const segments = [];
+    let current = '';
+    for (let i = 0; i < text.length; i++) {
+        current += text[i];
+        const ch = text[i];
+        const next = text[i + 1];
+        const next2 = text[i + 2];
+
+        if (ch === '.' && next === '.' && next2 === '.') {
+            current += '..';
+            i += 2;
+            const after = text[i + 1];
+            if (after === ' ' || after === undefined || after === '"') {
+                if (after === '"') { current += '"'; i++; }
+                segments.push(current.trim());
+                current = '';
+                if (text[i + 1] === ' ') i++;
+                continue;
+            }
+        }
+
+        if (ch === '.' || ch === '?' || ch === '!') {
+            if (next === ' ' || next === undefined || next === '"') {
+                const prevWord = current.match(/\b(\w+)\.$/);
+                if (ch === '.' && prevWord && ['Mr','Mrs','Ms','Dr','Prof','St','etc'].includes(prevWord[1])) {
+                    continue;
+                }
+                if (next === '"') { current += '"'; i++; }
+                segments.push(current.trim());
+                current = '';
+                if (text[i + 1] === ' ') i++;
+                continue;
+            }
+        }
+    }
+    if (current.trim()) segments.push(current.trim());
+    return segments;
+}
+
+function splitZh(text) {
+    const segments = [];
+    let current = '';
+    for (let i = 0; i < text.length; i++) {
+        current += text[i];
+        if ('\u3002\uff01\uff1f'.includes(text[i])) {
+            if (text[i + 1] === '\u201D') { current += '\u201D'; i++; }
+            segments.push(current.trim());
+            current = '';
+            continue;
+        }
+        if (text[i] === '\u2026' && text[i + 1] === '\u2026') {
+            current += '\u2026'; i++;
+            segments.push(current.trim());
+            current = '';
+            continue;
+        }
+    }
+    if (current.trim()) segments.push(current.trim());
+    return segments.filter(s => s.length > 0);
+}
+
+function highlightVocab(text) {
+    const vocabKeys = Object.keys(vocab).sort((a, b) => b.length - a.length);
+    let result = text;
+    const usedKeys = new Set();
+    for (const key of vocabKeys) {
+        if (usedKeys.has(key.toLowerCase())) continue;
+        const escaped = key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        const pattern = new RegExp('\\b' + escaped + '\\b', 'gi');
+        if (pattern.test(result)) {
+            result = result.replace(pattern, (match) => {
+                const lower = match.toLowerCase();
+                const vocabKey = Object.keys(vocab).find(k => k.toLowerCase() === lower) || match;
+                const tip = vocab[vocabKey] || vocab[match];
+                if (!tip) return match;
+                return `<span class="vocab">${match}<span class="tooltip">${tip}</span></span>`;
+            });
+            usedKeys.add(key.toLowerCase());
+        }
+    }
+    return result;
+}
+
+const data = [
+    {
+        page: 9,
+        en: `Credence Joy makes me feel unsettled...`,
+        zh: `克丽登丝·乔伊让我感到不安……`
+    },
+    {
+        page: 9,
+        en: `Since the fabric store, I have to walk with my head down. I want to hide my face completely while quickening my pace as if running to catch a bus. Ruby. How did she know I was Ruby... I should have asked her about it. And if I was more sensible, I wouldn't blurt out my name like that. But what can I say? I didn't even think at all. Just because I heard that name, I almost had to jump in and cover her mouth...`,
+        zh: `自从那次在布料店之后，我就不得不低着头走路。我想完全隐藏自己的脸，同时加快脚步，仿佛要赶公交车似的。露比。她怎么知道我是露比……我应该问问她的。如果我更理智一点，就不会那样脱口而出自己的名字。但我能说什么呢？我根本什么都没想。仅仅因为听到那个名字，我差点就要冲上去捂住她的嘴……`
+    },
+    {
+        page: 9,
+        en: `I make eye contact with an old woman. And that makes me even more terrified. Ruby... or everyone knows I am Ruby. I stare relentlessly into those foggy eyes behind thick-lensed glasses until it is the old woman who looks away. Her trembling hand lifts to cover her yawning mouth. She might not even see my face. Maybe I am just a blurred form through the lens of her bad eyesight, I think, before I look through the clouded window dilapidated from age.`,
+        zh: `我与一位老妇人对视。这让我更加恐惧。露比……或者说，所有人都知道我是露比。我死死地盯着那副厚镜片后浑浊的眼睛，直到老妇人先移开了视线。她颤抖的手抬起来捂住打哈欠的嘴。她甚至可能根本没看清我的脸。也许我只是她视力不佳的镜片里形成的一个模糊影像吧，我心想，然后望向那扇因年久而浑浊破旧的窗户。`
+    },
+    {
+        page: 10,
+        en: `The sky is bright orange. So picturesque. But I can't imagine admiring the scene or letting my mind drift away with the clouds. I can only stare. And keep thinking about whether someone is staring at me... is it the man standing next to me? Or is it a driver who is looking at the mirror reflecting my face? Or is it a boy looking up at me while the car stops at a traffic light? Along the way on the road filled with the smell of black soot, I can only think... Credence Joy, those dark blue eyes that make me paranoid of every other pair of eyes that look at me. And that amount of money she offered—it makes me grit my teeth at my own contradictory and chaotic thoughts...`,
+        zh: `天空是明亮的橘色。美如画。但我无法想象自己欣赏这景色，或是让思绪随云飘远。我只能呆呆地凝视。不停地想，是不是有人在盯着我看……是站在我旁边的那个男人吗？还是看着后视镜里我脸庞的司机？又或者是红灯停车时抬头看我的那个男孩？一路上，道路弥漫着煤烟的气味，我只能想……克丽登丝·乔伊，那双深蓝色的眼睛让我对每一双看向我的眼睛都疑神疑鬼。而她提供的那笔钱——让我为自己的矛盾与混乱思绪而咬牙切齿……`
+    },
+    {
+        page: 10,
+        en: `An hour before the lion show starts, I am sitting in the dressing room, all the performers are walking here and there, hectically dealing with their business like always. I, a performer dressed in a costume made from lion fur and skins, am coloring my face with drops of paint and glitters. I draw whiskers for myself—a black line next to the big nose, which is crimson today. I always think that such makeup has made me a Ruby, just one of the lions in Mr. Crimsons' circus.`,
+        zh: `狮子表演开始前一小时，我坐在化妆室里，所有表演者都走来走去，像往常一样手忙脚乱地忙着各自的事务。我，一个穿着狮子皮毛制成的戏服的表演者，正用颜料和闪粉涂抹我的脸。我给自己画上胡须——在大鼻子旁边画一条黑线，今天鼻子是深红色的。我一直觉得这样的妆容让我成为了露比，只是克里姆森先生马戏团里的一头狮子而已。`
+    },
+    {
+        page: 11,
+        en: `But then, once more, I think of Credence Joy's intense blue eyes... I put the stained brush on the table, lift my still-sweating hand to touch my throbbing temple. The white light from the light bulbs surrounding the mirror frame shines on me.`,
+        zh: `但接着，我再次想起了克丽登丝·乔伊那双深邃的蓝眼睛……我把沾满颜料的刷子放在桌上，抬起仍在出汗的手，触碰抽痛的太阳穴。镜框周围灯泡发出的白光照射在我身上。`
+    },
+    {
+        page: 11,
+        en: `Anne Levon is still here...`,
+        zh: `安妮·莱文还在这里……`
+    },
+    {
+        page: 11,
+        en: `Or should I wear a mask? A mask that isn't just an eyepatch covering the scar that stretches from my eye to the right cheekbone and my empty eye socket, but a mask that covers my whole face... Will Mr. Crimsons permit that? I am considering it, but it is Jacob that startled me by touching my shoulder. He says "Your makeup is different today... Did Mr. Crimsons ask you to change your style?" I shake my head. "No... I just want to try something new, but I think I will wash it off, it's..."`,
+        zh: `还是我应该戴上面具？一个不只是眼罩的面具——不只是遮住从眼睛延伸到右颧骨伤疤、遮住我空洞眼窝的眼罩，而是遮住我整张脸的面具……克里姆森先生会允许吗？我正想着，雅各布突然碰了碰我的肩膀，吓了我一跳。他说："你今天化妆不一样……是克里姆森先生让你换风格的吗？"我摇摇头。"不……我只是想尝试点新东西，但我想我会洗掉，它……"`
+    },
+    {
+        page: 11,
+        en: `"Like a clown." He said that. And I laugh softly. Yes, I look like a clown. If I do my makeup like this, I should go walk on a giant ball and juggle colorful balls with Matt. So I start removing my makeup. And all the while back to question the mask.`,
+        zh: `"像个小丑。"他说道。我轻轻笑了。是的，我看起来就像个小丑。如果我化这样的妆，我应该去踩大球，跟马特一起抛彩球。于是我开始卸妆。而所有这些念头又回到面具的问题上。`
+    },
+    {
+        page: 12,
+        en: `Although there is no real need for concern, in truth, I can give an immediate answer—Mr. Crimsons would not allow it. They love my face too much for that. Mr. Crimsons once told me that the audience loved Ruby's beautiful savage face... Mr. Crimsons would not allow it. I feel so disheartened and distressed after that thought.`,
+        zh: `虽然其实没必要担心，说实话，我能立刻给出答案——克里姆森先生不会允许的。他们太喜欢我的脸了。克里姆森先生曾告诉我，观众喜欢露比那张美丽而狂野的脸……克里姆森先生不会允许的。想到这儿，我感到如此沮丧和痛苦。`
+    },
+    {
+        page: 12,
+        en: `"Anne..." I turn to the sound of the call. It is Catherine who walks up to me with a puzzled expression. She wears a pink wig that looks like big cotton candy. Her eyebrows, which are painted in the arching shape like the moon, furrow. And the painted large grinning lips that reach her cheekbones make her look like she is smiling all the time.`,
+        zh: `"安妮……"我转向呼唤声的方向。是凯瑟琳，她一脸困惑地朝我走来。她戴着一顶粉色假发，像一大团棉花糖。她的眉毛画成了月牙形，此刻皱了起来。而她那画着的大大的、咧到颧骨的笑脸嘴唇，让她看起来始终面带微笑。`
+    },
+    {
+        page: 12,
+        en: `"We are starting soon. Why haven't you finished yet?" She said. And I am at the point of crying. "Cat..." That was all I said. The beautiful figure in a purple leotard that concealed so little of her body sits down in the chair next to me. Without words, I allow her to deal with my face. She removes the clown makeup look. I hear her chuckle softly`,
+        zh: `"我们快开始了。你怎么还没弄好？"她说。我快要哭出来了。"猫……"我只说了这一句。那个身着紫色紧身衣、身体几乎一览无余的美丽身影在我旁边的椅子上坐下。我无言地让她帮我弄脸。她卸掉了小丑妆。我听到她轻声笑了`
+    }
+];
+
+const enContainer = document.getElementById('en-container');
+const zhContainer = document.getElementById('zh-container');
+
+let currentPage = 0;
+let globalSentenceId = 0;
+
+data.forEach((item, paraIdx) => {
+    if (item.page !== currentPage) {
+        currentPage = item.page;
+        const enMarker = document.createElement('div');
+        enMarker.className = 'page-marker';
+        enMarker.textContent = 'Page ' + currentPage;
+        enContainer.appendChild(enMarker);
+
+        const zhMarker = document.createElement('div');
+        zhMarker.className = 'page-marker';
+        zhMarker.textContent = '第 ' + currentPage + ' 页';
+        zhContainer.appendChild(zhMarker);
+    }
+
+    const enSentences = splitEn(item.en);
+    const zhSentences = splitZh(item.zh);
+    const minCount = Math.min(enSentences.length, zhSentences.length);
+
+    let enHtml = '';
+    let zhHtml = '';
+
+    for (let i = 0; i < minCount; i++) {
+        enHtml += `<span class="sentence" data-sid="${globalSentenceId}">${highlightVocab(enSentences[i])}</span> `;
+        zhHtml += `<span class="sentence" data-sid="${globalSentenceId}">${zhSentences[i]}</span>`;
+        globalSentenceId++;
+    }
+
+    if (enSentences.length > minCount) {
+        const extra = enSentences.slice(minCount).join(' ');
+        enHtml += `<span class="sentence" data-sid="${globalSentenceId - 1}"> ${highlightVocab(extra)}</span>`;
+    }
+    if (zhSentences.length > minCount) {
+        const extra = zhSentences.slice(minCount).join('');
+        zhHtml += `<span class="sentence" data-sid="${globalSentenceId - 1}">${extra}</span>`;
+    }
+
+    const enPara = document.createElement('div');
+    enPara.className = 'paragraph';
+    enPara.innerHTML = enHtml.trim();
+    enContainer.appendChild(enPara);
+
+    const zhPara = document.createElement('div');
+    zhPara.className = 'paragraph';
+    zhPara.innerHTML = zhHtml.trim();
+    zhContainer.appendChild(zhPara);
+});
+
+document.getElementById('font-select').addEventListener('change', function() {
+    document.querySelectorAll('.column-left .paragraph').forEach(p => {
+        p.style.fontFamily = this.value;
+    });
+});
+
+document.querySelectorAll('.sentence').forEach(s => {
+    s.addEventListener('mouseenter', () => {
+        const sid = s.dataset.sid;
+        document.querySelectorAll(`.sentence[data-sid="${sid}"]`).forEach(match => {
+            match.classList.add('highlight');
+        });
+    });
+    s.addEventListener('mouseleave', () => {
+        const sid = s.dataset.sid;
+        document.querySelectorAll(`.sentence[data-sid="${sid}"]`).forEach(match => {
+            match.classList.remove('highlight');
+        });
+    });
+});
+</script>
+</body>
+</html>
