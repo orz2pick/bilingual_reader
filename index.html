@@ -6,23 +6,19 @@
     <title>双语对照阅读 · Chapter I</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap');
-
         * { margin: 0; padding: 0; box-sizing: border-box; }
-
         body {
             font-family: "Playfair Display", "Noto Serif SC", "Georgia", "Times New Roman", serif;
             background: #f7f5f0;
             color: #2a2a2a;
             line-height: 1.85;
         }
-
         .header {
             text-align: center;
             padding: 30px 20px 10px;
             background: #f7f5f0;
             border-bottom: 1px solid #e0d8cc;
         }
-
         .header h1 {
             font-size: 22px;
             font-weight: 600;
@@ -30,35 +26,29 @@
             letter-spacing: 3px;
             font-style: italic;
         }
-
         .header .subtitle {
             font-size: 13px;
             color: #9a8b7a;
             margin-top: 6px;
             letter-spacing: 2px;
         }
-
         .container {
             display: flex;
             max-width: 1300px;
             margin: 0 auto;
             min-height: calc(100vh - 100px);
         }
-
         .column {
             flex: 1;
             padding: 30px 40px 60px;
         }
-
         .column-left {
             border-right: 1px solid #e0d8cc;
             background: #fdfcf8;
         }
-
         .column-right {
             background: #f5f2ec;
         }
-
         .col-title {
             text-align: center;
             font-size: 12px;
@@ -69,7 +59,6 @@
             padding-bottom: 10px;
             border-bottom: 1px solid #e8e0d4;
         }
-
         .col-title-left {
             display: flex;
             align-items: center;
@@ -77,7 +66,6 @@
             gap: 10px;
             flex-wrap: wrap;
         }
-
         .font-select {
             font-size: 11px;
             padding: 3px 8px;
@@ -92,10 +80,8 @@
             font-family: "Playfair Display", "Noto Serif SC", "Georgia", serif;
             transition: border-color 0.2s;
         }
-
         .font-select:hover { border-color: #b8a890; }
         .font-select:focus { border-color: #c4a882; }
-
         .page-marker {
             text-align: center;
             font-size: 11px;
@@ -104,7 +90,6 @@
             margin: 35px 0 20px;
             position: relative;
         }
-
         .page-marker::before,
         .page-marker::after {
             content: "";
@@ -115,7 +100,6 @@
             vertical-align: middle;
             margin: 0 12px;
         }
-
         .paragraph {
             margin-bottom: 18px;
             padding: 14px 18px;
@@ -124,19 +108,16 @@
             cursor: default;
             position: relative;
         }
-
         .column-left .paragraph {
             font-size: 15.5px;
             line-height: 1.9;
             color: #3a3a3a;
         }
-
         .column-right .paragraph {
             font-size: 15px;
             line-height: 1.95;
             color: #4a4a4a;
         }
-
         .paragraph::before {
             content: "";
             position: absolute;
@@ -147,42 +128,34 @@
             border-radius: 2px;
             transition: background 0.35s ease;
         }
-
         .column-left .paragraph:hover {
             background: #ede8de;
             box-shadow: 0 2px 12px rgba(0,0,0,0.04);
         }
-
         .column-left .paragraph:hover::before {
             background: #b8a890;
         }
-
         .column-right .paragraph:hover {
             background: #e8e2d6;
             box-shadow: 0 2px 12px rgba(0,0,0,0.04);
         }
-
         .column-right .paragraph:hover::before {
             background: #c4a882;
         }
-
         .sentence {
             transition: background 0.25s ease, box-shadow 0.25s ease;
             border-radius: 3px;
             padding: 1px 2px;
             cursor: default;
         }
-
         .column-left .sentence.highlight {
             background: #e8dcc8;
             box-shadow: 0 0 0 2px #c8b090, 0 4px 12px rgba(0,0,0,0.06);
         }
-
         .column-right .sentence.highlight {
             background: #e8dcc8;
             box-shadow: 0 0 0 2px #c8b090, 0 4px 12px rgba(0,0,0,0.06);
         }
-
         .vocab {
             color: #8B5E3C;
             border-bottom: 1px dashed #c4a882;
@@ -190,77 +163,132 @@
             position: relative;
             transition: color 0.2s;
         }
-
         .vocab:hover {
             color: #5a3a1a;
         }
-
         .vocab .tooltip {
             visibility: hidden;
             opacity: 0;
             position: absolute;
             z-index: 100;
-            bottom: calc(100% + 10px);
+            bottom: calc(100% + 12px);
             left: 50%;
-            transform: translateX(-50%) translateY(4px);
+            transform: translateX(-50%) translateY(6px);
             background: #fffdf8;
             border: 1px solid #d4b896;
             color: #3a3a3a;
-            padding: 10px 14px;
-            border-radius: 8px;
-            font-size: 13px;
-            line-height: 1.6;
-            font-family: "Noto Serif SC", "Georgia", serif;
-            white-space: normal;
-            width: 280px;
-            max-width: 80vw;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+            border-radius: 10px;
+            width: 340px;
+            max-width: 85vw;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.15);
             pointer-events: none;
-            transition: opacity 0.25s ease, transform 0.25s ease;
+            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+            overflow: hidden;
+            font-family: "Playfair Display", "Georgia", "Noto Serif SC", serif;
         }
-
         .vocab .tooltip::after {
             content: "";
             position: absolute;
             top: 100%;
             left: 50%;
-            margin-left: -6px;
-            border-width: 6px 6px 0;
+            margin-left: -8px;
+            border-width: 8px 8px 0;
             border-style: solid;
             border-color: #d4b896 transparent transparent;
         }
-
         .vocab .tooltip::before {
             content: "";
             position: absolute;
             top: 100%;
             left: 50%;
-            margin-left: -5px;
-            border-width: 5px 5px 0;
+            margin-left: -7px;
+            border-width: 7px 7px 0;
             border-style: solid;
             border-color: #fffdf8 transparent transparent;
             z-index: 1;
         }
-
         .vocab:hover .tooltip {
             visibility: visible;
             opacity: 1;
             transform: translateX(-50%) translateY(0);
         }
-
+        .dict-header {
+            background: #f5efe6;
+            padding: 12px 16px 10px;
+            border-bottom: 1px solid #e8e0d4;
+        }
+        .dict-word {
+            font-size: 17px;
+            font-weight: 600;
+            color: #4a3a2a;
+            letter-spacing: 0.5px;
+        }
+        .dict-ipa {
+            font-size: 13px;
+            color: #8a7a6a;
+            margin-top: 3px;
+            font-family: "Georgia", serif;
+        }
+        .dict-body {
+            padding: 12px 16px 14px;
+            max-height: 320px;
+            overflow-y: auto;
+        }
+        .dict-pos {
+            font-size: 12px;
+            color: #c4a060;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+        }
+        .dict-def {
+            font-size: 13px;
+            line-height: 1.7;
+            color: #4a4a4a;
+            margin-bottom: 8px;
+            padding-left: 18px;
+            position: relative;
+        }
+        .dict-def::before {
+            content: attr(data-num);
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-size: 11px;
+            color: #b8a080;
+            font-weight: 600;
+        }
+        .dict-exam {
+            font-size: 12px;
+            line-height: 1.6;
+            color: #7a7a7a;
+            font-style: italic;
+            margin-top: 6px;
+            padding-left: 14px;
+            border-left: 2px solid #e0d8cc;
+        }
+        .dict-note {
+            font-size: 11px;
+            color: #9a8a7a;
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px dashed #e0d8cc;
+            line-height: 1.5;
+        }
         @media (max-width: 900px) {
             .container { flex-direction: column; }
             .column-left { border-right: none; border-bottom: 1px solid #e0d8cc; }
             .column { padding: 20px; }
+            .vocab .tooltip { width: 90vw; left: 50%; transform: translateX(-50%) translateY(6px); }
         }
     </style>
 </head>
 <body>
     <div class="header">
         <h1>Chapter I</h1>
-        <div class="subtitle">鼠标悬停句子，左右高亮对照 · 重点词汇悬停查看详解</div>
+        <div class="subtitle">鼠标悬停句子左右高亮 · 重点词汇悬停查看牛津词典详解</div>
     </div>
-
     <div class="container">
         <div class="column column-left">
             <div class="col-title col-title-left">
@@ -271,7 +299,6 @@
                     <option value="'Times New Roman', serif">Times New Roman</option>
                     <option value="Garamond, serif">Garamond</option>
                     <option value="'Palatino Linotype', serif">Palatino</option>
-                    <option value="'Book Antiqua', serif">Book Antiqua</option>
                 </select>
             </div>
             <div id="en-container"></div>
@@ -281,74 +308,130 @@
             <div id="zh-container"></div>
         </div>
     </div>
-
 <script>
-const vocab = {
-    'Credence': 'Credence（克丽登丝）—— 本词原意为"相信、信任"，用作女主角姓氏暗含讽刺：她已无法信任任何人。',
-    'Joy': 'Joy（乔伊）—— 姓氏，原意为"快乐"，与主角痛苦压抑的处境形成强烈反差。',
-    'Ruby': 'Ruby（露比）—— 女主角的艺名，原意为"红宝石"，暗示她被当作珍奇之物展览、被凝视的命运。',
-    'unsettled': '不安的，不稳定的 —— 感到焦虑、无法平静，内心动荡。',
-    'paranoid': '多疑的，偏执的 —— 毫无根据地怀疑他人，认为所有人都在盯着自己。',
-    'contradictory': '矛盾的，相互冲突的 —— 指内心同时存在截然相反的念头，无法自洽。',
-    'dilapidated': '破旧的，年久失修的 —— 建筑因长期无人维护而衰败破损。',
-    'picturesque': '如诗如画的，风景优美的 —— 美得像一幅画。',
-    'throbbing': '抽痛的，搏动的 —— 一阵阵脉动般地疼痛（如太阳穴跳痛）。',
-    'socket': '眼窝，插座 —— 在文中指 eye socket（眼眶），暗示她失去了一只眼睛的创伤。',
-    'leotard': '紧身连体衣 —— 杂技、舞蹈演员穿着的弹性紧身服装。',
-    'savage': '野性的，未驯服的 —— 原始、粗犷而美丽，带有危险的美感。',
-    'costume': '戏服，演出服 —— 舞台表演时穿的特定服装。',
-    'eyepatch': '眼罩 —— 遮住受伤或失明眼睛的布制罩子。',
-    'cheekbone': '颧骨 —— 眼睛下方、脸颊侧面的骨骼。',
-    'whiskers': '(猫/狮)胡须 —— 文中指化妆画出的动物胡须线条。',
-    'crimson': '深红色，绯红 —— Mr. Crimsons 姓氏的来源，也是小丑鼻子的经典颜色。',
-    'mask': '面具 / 伪装 —— 全文核心意象，既可指遮脸的面具，也隐喻隐藏真实自我的伪装。',
-    'clown': '小丑 —— 马戏团中以夸张妆容和滑稽表演取悦观众的演员。',
-    'circus': '马戏团 —— 巡回演出的杂技、动物表演团。',
-    'grinning': '咧嘴笑的 —— 笑容夸张地咧到脸颊，形容画上去的笑脸妆容。',
-    'furrow': '皱(眉)，起皱纹 —— furrow one\'s brows 皱眉，表示困惑或担忧。',
-    'startled': '受惊的，被吓一跳的 —— 被突如其来的触碰或声音惊到。',
-    'trembling': '颤抖的，发抖的 —— 因恐惧、年迈或虚弱而身体不由自主地抖动。',
-    'dressing room': '化妆室，更衣室 —— 演员上场前化妆和换服装的房间。',
-    'puzzled': '困惑的，迷惑不解的 —— 感到疑惑，想不明白。',
-    'relentlessly': '不懈地，不停地 —— 毫不放松地、持续地（做某事）。',
-    'foggy': '模糊的，有雾的 —— 文中形容老年人浑浊的视力。',
-    'hectic': '忙乱的，手忙脚乱的 —— 紧张忙乱、充满混乱活动的。',
-    'disheartened': '沮丧的，灰心的 —— 因失望而意志消沉。',
-    'distressed': '痛苦的，忧虑的 —— 感到极度焦虑或悲伤。',
+
+const vocabData = {
+    "Credence": { ipa: "/ˈkriːdns/", pos: "n.", defs: ["信任；相信（formal）","（宗教）信条，教义"], exam: "Her surname 'Credence' ironically contrasts with her inability to trust anyone.", note: "用作姓氏，暗含讽刺：名为'信任'，实则已无法相信任何人。" },
+    "Joy": { ipa: "/dʒɔɪ/", pos: "n.", defs: ["快乐；喜悦；高兴","令人高兴的人/事"], exam: "The surname 'Joy' sharply contrasts with the protagonist's suffering.", note: "姓氏，与主角压抑痛苦的处境形成强烈反差。" },
+    "Ruby": { ipa: "/ˈruːbi/", pos: "n.", defs: ["红宝石","深红色"], exam: "'Ruby' is her stage name, suggesting she is exhibited like a precious gem.", note: "女主角艺名，原意为'红宝石'，暗示她被当作珍奇之物展览、被凝视的命运。" },
+    "unsettled": { ipa: "/ʌnˈsetld/", pos: "adj.", defs: ["（情绪）不安的，烦乱的","（局势）动荡不定的","未解决的"], exam: "Credence Joy makes me feel unsettled...", note: "本文中指内心焦虑、无法平静的状态。" },
+    "paranoid": { ipa: "/ˈpærənɔɪd/", pos: "adj.", defs: ["多疑的；偏执的","患偏执症的"], exam: "Those dark blue eyes make me paranoid of every other pair of eyes.", note: "毫无根据地怀疑他人，总觉得有人在监视自己。" },
+    "contradictory": { ipa: "/ˌkɒntrəˈdɪktəri/", pos: "adj.", defs: ["相互矛盾的；对立的","反驳的；抗辩的"], exam: "My own contradictory and chaotic thoughts...", note: "内心同时存在截然相反的念头，无法自洽。" },
+    "chaotic": { ipa: "/keɪˈɒtɪk/", pos: "adj.", defs: ["混乱的；杂乱的；无秩序的"], exam: "...contradictory and chaotic thoughts.", note: "源自希腊语 chaos（混沌），形容思绪毫无条理。" },
+    "dilapidated": { ipa: "/dɪˈlæpɪdeɪtɪd/", pos: "adj.", defs: ["破旧的；年久失修的；（建筑）破败的"], exam: "The clouded window dilapidated from age.", note: "常形容房屋、建筑因长期无人维护而衰败。" },
+    "picturesque": { ipa: "/ˌpɪktʃəˈresk/", pos: "adj.", defs: ["风景如画的；优美的","（语言）生动的，栩栩如生的"], exam: "The sky is bright orange. So picturesque.", note: "形容景色美得像一幅画，picturesque village 为常见搭配。" },
+    "throbbing": { ipa: "/ˈθrɒbɪŋ/", pos: "adj.", defs: ["（疼痛）抽痛的；阵阵跳动的","（节奏）强烈的；震动的"], exam: "Lift my still-sweating hand to touch my throbbing temple.", note: "throb 动词原意为'搏动、抽痛'，常形容脉搏或头痛。" },
+    "temple": { ipa: "/ˈtempl/", pos: "n.", defs: ["太阳穴；颞部","庙宇；寺院；神殿"], exam: "Touch my throbbing temple.", note: "本文中取第一义，指头部两侧太阳穴位置。" },
+    "socket": { ipa: "/ˈsɒkɪt/", pos: "n.", defs: ["眼窝；眼眶","插座；插孔","（人体的）窝，槽"], exam: "My empty eye socket.", note: "eye socket 为固定搭配，指容纳眼球的骨骼凹陷处。" },
+    "eyepatch": { ipa: "/ˈaɪpætʃ/", pos: "n.", defs: ["（遮住受伤或失明眼睛的）眼罩"], exam: "A mask that isn't just an eyepatch covering the scar.", note: "常由海盗或眼部受伤者佩戴，文中暗示主角失去一只眼睛。" },
+    "cheekbone": { ipa: "/ˈtʃiːkbəʊn/", pos: "n.", defs: ["颧骨；颊骨"], exam: "The scar stretches from my eye to the right cheekbone.", note: "面部骨骼，位于眼睛下方、脸颊侧面高处。" },
+    "scar": { ipa: "/skɑː(r)/", pos: "n.", defs: ["伤疤；伤痕","（心理）创伤"], exam: "Covering the scar that stretches from my eye to the right cheekbone.", note: "文中为面部物理伤疤，也隐喻心理创伤。" },
+    "mask": { ipa: "/mɑːsk/", pos: "n.", defs: ["面具；面罩","伪装；掩饰"], exam: "Or should I wear a mask? A mask that covers my whole face...", note: "全文核心意象：既可指遮脸的面具，也隐喻隐藏真实自我的伪装。" },
+    "clown": { ipa: "/klaʊn/", pos: "n.", defs: ["（马戏团的）小丑；丑角","举止滑稽的人"], exam: "'Like a clown.' Yes, I look like a clown.", note: "马戏团中以夸张妆容和滑稽表演取悦观众的演员。" },
+    "circus": { ipa: "/ˈsɜːkəs/", pos: "n.", defs: ["马戏团；马戏表演","喧闹的场面；热闹的集会"], exam: "One of the lions in Mr. Crimsons' circus.", note: "巡回演出的杂技、动物表演团体，常带有帐篷（big top）。" },
+    "crimson": { ipa: "/ˈkrɪmzn/", pos: "adj. / n.", defs: ["深红色的；绯红的","深红色；绯红色"], exam: "The big nose, which is crimson today.", note: "Mr. Crimsons 姓氏的来源，也是小丑鼻子的经典颜色。" },
+    "costume": { ipa: "/ˈkɒstjuːm/", pos: "n.", defs: ["（舞台）戏服；演出服","（特定场合穿的）服装"], exam: "Dressed in a costume made from lion fur and skins.", note: "与 everyday clothes 相对，指表演、节日等特殊场合穿着。" },
+    "whiskers": { ipa: "/ˈwɪskəz/", pos: "n.", defs: ["（猫、狮等的）胡须","（人的）连鬓胡子"], exam: "I draw whiskers for myself—a black line next to the big nose.", note: "文中指化妆画出的动物胡须线条，增添野兽特征。" },
+    "glitters": { ipa: "/ˈɡlɪtəz/", pos: "n. / v.", defs: ["闪光；闪亮的小颗粒","闪烁；闪耀"], exam: "Coloring my face with drops of paint and glitters.", note: "文中为名词，指化妆用的亮粉、闪片。" },
+    "hectically": { ipa: "/ˈhektɪkli/", pos: "adv.", defs: ["忙乱地；紧张地；手忙脚乱地"], exam: "All the performers are walking here and there, hectically dealing with their business.", note: "hectic 形容词原意为'发热的、忙乱的'，常形容紧张忙乱的活动。" },
+    "startled": { ipa: "/ˈstɑːtld/", pos: "adj.", defs: ["受惊的；吓了一跳的"], exam: "It is Jacob that startled me by touching my shoulder.", note: "startle 动词意为'使惊吓'，常指被突如其来的触碰或声音惊到。" },
+    "permit": { ipa: "/pəˈmɪt/ v.  /ˈpɜːmɪt/ n.", pos: "v.", defs: ["允许；许可；准许"], exam: "Will Mr. Crimsons permit that?", note: "注意读音：动词 permit 重音在第二音节 /pəˈmɪt/。" },
+    "juggle": { ipa: "/ˈdʒʌɡl/", pos: "v.", defs: ["（用手）抛接；玩杂耍","尽力同时应付（多项工作）"], exam: "Juggle colorful balls with Matt.", note: "马戏团常见技艺，同时抛接多个物体保持其在空中。" },
+    "savage": { ipa: "/ˈsævɪdʒ/", pos: "adj. / n.", defs: ["野性的；凶猛的；未驯服的","野蛮的；残酷的"], exam: "The audience loved Ruby's beautiful savage face.", note: "原始、粗犷而美丽，带有危险的美感，并非贬义。" },
+    "disheartened": { ipa: "/dɪsˈhɑːtnd/", pos: "adj.", defs: ["沮丧的；灰心的；失去信心的"], exam: "I feel so disheartened and distressed after that thought.", note: "dis-（否定前缀）+ hearten（鼓舞），字面意为'不再受鼓舞'。" },
+    "distressed": { ipa: "/dɪˈstrest/", pos: "adj.", defs: ["痛苦的；忧虑的；苦恼的","（衣物）做旧的"], exam: "I feel so disheartened and distressed after that thought.", note: "指因焦虑、悲伤而极度痛苦，语气强于 worried。" },
+    "puzzled": { ipa: "/ˈpʌzld/", pos: "adj.", defs: ["困惑的；迷惑不解的；茫然的"], exam: "Catherine walks up to me with a puzzled expression.", note: "puzzle 动词意为'使困惑'，puzzled 形容人感到疑惑。" },
+    "furrow": { ipa: "/ˈfʌrəʊ/", pos: "v. / n.", defs: ["皱（眉）；使起皱纹","犁沟；皱纹"], exam: "Her eyebrows, painted like the moon, furrow.", note: "furrow one's brows 为固定搭配，表示皱眉、蹙额。" },
+    "grinning": { ipa: "/ˈɡrɪnɪŋ/", pos: "adj.", defs: ["咧嘴笑的；露齿而笑的"], exam: "The painted large grinning lips that reach her cheekbones.", note: "grin 指咧嘴大笑，常带有夸张或刻意的意味。" },
+    "leotard": { ipa: "/ˈliːətɑːd/", pos: "n.", defs: ["（杂技、舞蹈演员穿的）紧身连体衣"], exam: "The beautiful figure in a purple leotard.", note: "以法国杂技演员 Jules Léotard 命名，弹性紧身。" },
+    "concealed": { ipa: "/kənˈsiːld/", pos: "adj.", defs: ["隐藏的；隐蔽的；掩盖的"], exam: "A purple leotard that concealed so little of her body.", note: "conceal 动词意为'隐藏'，文中用反讽：紧身衣'遮掩'得很少。" },
+    "chuckle": { ipa: "/ˈtʃʌkl/", pos: "v. / n.", defs: ["轻声笑；咯咯笑；暗自窃笑"], exam: "I hear her chuckle softly.", note: "区别于大笑（laugh），chuckle 是压低声音的轻笑。" },
+    "terrified": { ipa: "/ˈterɪfaɪd/", pos: "adj.", defs: ["极度惊恐的；吓坏了的"], exam: "That makes me even more terrified.", note: "terrify 的过去分词作形容词，语气强于 scared / afraid。" },
+    "relentlessly": { ipa: "/rɪˈlentləsli/", pos: "adv.", defs: ["不懈地；不停地；毫不松懈地","残酷地；无情地"], exam: "I stare relentlessly into those foggy eyes.", note: "relentless 原意为'不仁慈的'，也可指坚持不懈、毫不放松。" },
+    "foggy": { ipa: "/ˈfɒɡi/", pos: "adj.", defs: ["有雾的；雾气朦胧的","（眼睛）模糊的；浑浊的","（记忆）模糊的"], exam: "Those foggy eyes behind thick-lensed glasses.", note: "本文形容老年人因白内障等视力问题导致的浑浊眼神。" },
+    "trembling": { ipa: "/ˈtremblɪŋ/", pos: "adj.", defs: ["颤抖的；发抖的"], exam: "Her trembling hand lifts to cover her yawning mouth.", note: "tremble 动词意为'颤抖'，可因恐惧、年迈、虚弱或寒冷引起。" },
+    "blurred": { ipa: "/blɜːd/", pos: "adj.", defs: ["模糊的；不清楚的","（界限）不明的；难以区分的"], exam: "Maybe I am just a blurred form through the lens of her bad eyesight.", note: "blur 动词原意为'使模糊'，文中指视力不佳造成的影像不清。" },
+    "intense": { ipa: "/ɪnˈtens/", pos: "adj.", defs: ["（感情）强烈的；剧烈的","（目光）锐利的；深邃的","紧张的；激烈的"], exam: "Credence Joy's intense blue eyes.", note: "形容目光深邃、穿透力强，给人强烈的情感冲击。" },
+    "immediate": { ipa: "/ɪˈmiːdiət/", pos: "adj.", defs: ["立刻的；即时的","目前的；当前的","（关系）直接的；紧接的"], exam: "I can give an immediate answer.", note: "强调没有任何延迟，instant 的近义词。" },
+    "audience": { ipa: "/ˈɔːdiəns/", pos: "n.", defs: ["观众；听众","（与要人的）正式会见"], exam: "The audience loved Ruby's beautiful savage face.", note: "集合名词，单复数同形，谓语动词可用单数或复数。" },
+    "fabric": { ipa: "/ˈfæbrɪk/", pos: "n.", defs: ["织物；布料","（建筑物的）结构；构造"], exam: "Since the fabric store...", note: "fabric store 即布料店、纺织品店。" },
+    "sensible": { ipa: "/ˈsensəbl/", pos: "adj.", defs: ["明智的；理智的；合理的","（衣着）实用的"], exam: "If I was more sensible, I wouldn't blurt out my name.", note: "注意与 sensitive（敏感的）区分，sensible 意为'明智的'。" },
+    "blurt": { ipa: "/blɜːt/", pos: "v.", defs: ["脱口而出；不假思索地说出"], exam: "I wouldn't blurt out my name like that.", note: "常与 out 连用，blurt out 指未经思考突然说出。" },
+    "yawn": { ipa: "/jɔːn/", pos: "v. / n.", defs: ["打哈欠","（裂缝、缺口等）张开；裂开"], exam: "Her trembling hand lifts to cover her yawning mouth.", note: "本文中取第一义，因困倦而张大嘴打哈欠。" },
+    "soot": { ipa: "/sʊt/", pos: "n.", defs: ["煤烟；油烟；炭黑"], exam: "The road filled with the smell of black soot.", note: "燃料不完全燃烧产生的黑色粉末，常附着于烟囱、墙壁。" },
+    "grit": { ipa: "/ɡrɪt/", pos: "v. / n.", defs: ["咬紧（牙齿）","沙砾；勇气；毅力"], exam: "It makes me grit my teeth at my own thoughts.", note: "grit one's teeth 固定搭配，咬牙切齿，表愤怒或决心。" },
+    "arch": { ipa: "/ɑːtʃ/", pos: "n. / v.", defs: ["拱形；弓形","使成弓形；拱起"], exam: "Her eyebrows, painted in the arching shape like the moon.", note: "arching shape 即弓形、弧形，如月亮或桥梁的曲线。" },
+    "wig": { ipa: "/wɪɡ/", pos: "n.", defs: ["假发；头套"], exam: "She wears a pink wig that looks like big cotton candy.", note: "表演者常佩戴假发改变造型，cotton candy 即棉花糖。" },
+    "cotton": { ipa: "/ˈkɒtn/", pos: "n.", defs: ["棉花；棉织物","棉线"], exam: "A pink wig that looks like big cotton candy.", note: "cotton candy（美式）= candy floss（英式），即棉花糖。" },
+    "stained": { ipa: "/steɪnd/", pos: "adj.", defs: ["沾有污渍的；染色的","（名声）被玷污的"], exam: "I put the stained brush on the table.", note: "stain 动词意为'玷污、染色'，文中指沾满颜料的画笔。" },
+    "grin": { ipa: "/ɡrɪn/", pos: "v. / n.", defs: ["咧嘴笑；露齿而笑"], exam: "The painted large grinning lips.", note: "比 smile 更夸张，常露出牙齿，有时带有傻气或刻意感。" },
+    "glasses": { ipa: "/ˈɡlɑːsɪz/", pos: "n.", defs: ["眼镜（复数）","玻璃杯"], exam: "Those foggy eyes behind thick-lensed glasses.", note: "thick-lensed 指镜片很厚，暗示老妇人视力极差。" },
+    "pace": { ipa: "/peɪs/", pos: "n. / v.", defs: ["步伐；步速","节奏；速度","踱步"], exam: "Quickening my pace as if running to catch a bus.", note: "keep pace with 为常见搭配，意为'跟上……的步伐'。" },
+    "drift": { ipa: "/drɪft/", pos: "v. / n.", defs: ["飘移；漂流","（思想）漫游；走神","趋势；动向"], exam: "Letting my mind drift away with the clouds.", note: "drift away 指（思绪、注意力）逐渐飘走、走神。" },
+    "reflect": { ipa: "/rɪˈflekt/", pos: "v.", defs: ["反射（光、热、影像）","反映；体现","深思；反省"], exam: "A driver who is looking at the mirror reflecting my face.", note: "本文取第一义，mirror reflecting my face 即镜子映出我的脸。" },
+    "sweating": { ipa: "/ˈswetɪŋ/", pos: "adj.", defs: ["出汗的；冒汗的"], exam: "Lift my still-sweating hand.", note: "sweat 动词/名词，指出汗，still-sweating 强调手仍在出汗。" },
+    "remove": { ipa: "/rɪˈmuːv/", pos: "v.", defs: ["移开；拿走","去除；消除","解雇；开除"], exam: "She removes the clown makeup look.", note: "本文指卸妆，remove makeup 为固定搭配。" },
+    "consider": { ipa: "/kənˈsɪdə(r)/", pos: "v.", defs: ["考虑；细想","认为；把……看作","体谅；顾及"], exam: "I am considering it.", note: "consider + doing 为固定用法，意为'考虑做某事'。" },
+    "style": { ipa: "/staɪl/", pos: "n.", defs: ["风格；样式","方式；作风","时尚；流行"], exam: "Did Mr. Crimsons ask you to change your style?", note: "本文指化妆风格（makeup style）。" },
+    "figure": { ipa: "/ˈfɪɡə(r)/", pos: "n.", defs: ["人影；身影","数字；数值","身材；体形","人物；人士"], exam: "The beautiful figure in a purple leotard.", note: "本文指人影、身影，常带有优雅或引人注目的意味。" },
+    "allow": { ipa: "/əˈlaʊ/", pos: "v.", defs: ["允许；准许","使能够；使可能","承认；认可"], exam: "Mr. Crimsons would not allow it.", note: "allow sb. to do sth. 允许某人做某事。" },
+    "expression": { ipa: "/ɪkˈspreʃn/", pos: "n.", defs: ["表情；神色","表达；表示","词语；措辞"], exam: "Catherine walks up to me with a puzzled expression.", note: "facial expression 面部表情，为常用搭配。" },
+    "cotton candy": { ipa: "/ˈkɒtn ˈkændi/", pos: "n.", defs: ["棉花糖（美式）= candy floss（英式）"], exam: "A pink wig that looks like big cotton candy.", note: "将糖丝缠绕在棍子上制成的蓬松甜食，形似云朵。" },
 };
+
+function buildTooltip(word) {
+    const data = vocabData[word];
+    if (!data) return "";
+    let defsHtml = "";
+    data.defs.forEach((d, i) => {
+        defsHtml += `<div class="dict-def" data-num="${i+1}.">${d}</div>`;
+    });
+    let examHtml = data.exam ? `<div class="dict-exam">"${data.exam}"</div>` : "";
+    let noteHtml = data.note ? `<div class="dict-note">${data.note}</div>` : "";
+    return `
+        <div class="dict-header">
+            <div class="dict-word">${word}</div>
+            <div class="dict-ipa">${data.ipa}</div>
+        </div>
+        <div class="dict-body">
+            <div class="dict-pos">${data.pos}</div>
+            ${defsHtml}
+            ${examHtml}
+            ${noteHtml}
+        </div>
+    `;
+}
 
 function splitEn(text) {
     const segments = [];
-    let current = '';
+    let current = "";
     for (let i = 0; i < text.length; i++) {
         current += text[i];
         const ch = text[i];
         const next = text[i + 1];
         const next2 = text[i + 2];
-
-        if (ch === '.' && next === '.' && next2 === '.') {
-            current += '..';
+        if (ch === "." && next === "." && next2 === ".") {
+            current += "..";
             i += 2;
             const after = text[i + 1];
-            if (after === ' ' || after === undefined || after === '"') {
+            if (after === " " || after === undefined || after === '"') {
                 if (after === '"') { current += '"'; i++; }
                 segments.push(current.trim());
-                current = '';
-                if (text[i + 1] === ' ') i++;
+                current = "";
+                if (text[i + 1] === " ") i++;
                 continue;
             }
         }
-
-        if (ch === '.' || ch === '?' || ch === '!') {
-            if (next === ' ' || next === undefined || next === '"') {
+        if (ch === "." || ch === "?" || ch === "!") {
+            if (next === " " || next === undefined || next === '"') {
                 const prevWord = current.match(/\b(\w+)\.$/);
-                if (ch === '.' && prevWord && ['Mr','Mrs','Ms','Dr','Prof','St','etc'].includes(prevWord[1])) {
+                if (ch === "." && prevWord && ["Mr","Mrs","Ms","Dr","Prof","St","etc"].includes(prevWord[1])) {
                     continue;
                 }
                 if (next === '"') { current += '"'; i++; }
                 segments.push(current.trim());
-                current = '';
-                if (text[i + 1] === ' ') i++;
+                current = "";
+                if (text[i + 1] === " ") i++;
                 continue;
             }
         }
@@ -359,19 +442,19 @@ function splitEn(text) {
 
 function splitZh(text) {
     const segments = [];
-    let current = '';
+    let current = "";
     for (let i = 0; i < text.length; i++) {
         current += text[i];
-        if ('\u3002\uff01\uff1f'.includes(text[i])) {
-            if (text[i + 1] === '\u201D') { current += '\u201D'; i++; }
+        if ("\u3002\uff01\uff1f".includes(text[i])) {
+            if (text[i + 1] === "\u201D") { current += "\u201D"; i++; }
             segments.push(current.trim());
-            current = '';
+            current = "";
             continue;
         }
-        if (text[i] === '\u2026' && text[i + 1] === '\u2026') {
-            current += '\u2026'; i++;
+        if (text[i] === "\u2026" && text[i + 1] === "\u2026") {
+            current += "\u2026"; i++;
             segments.push(current.trim());
-            current = '';
+            current = "";
             continue;
         }
     }
@@ -380,18 +463,18 @@ function splitZh(text) {
 }
 
 function highlightVocab(text) {
-    const vocabKeys = Object.keys(vocab).sort((a, b) => b.length - a.length);
+    const vocabKeys = Object.keys(vocabData).sort((a, b) => b.length - a.length);
     let result = text;
     const usedKeys = new Set();
     for (const key of vocabKeys) {
         if (usedKeys.has(key.toLowerCase())) continue;
-        const escaped = key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-        const pattern = new RegExp('\\b' + escaped + '\\b', 'gi');
+        const escaped = key.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+        const pattern = new RegExp("\\b" + escaped + "\\b", "gi");
         if (pattern.test(result)) {
             result = result.replace(pattern, (match) => {
                 const lower = match.toLowerCase();
-                const vocabKey = Object.keys(vocab).find(k => k.toLowerCase() === lower) || match;
-                const tip = vocab[vocabKey] || vocab[match];
+                const vocabKey = Object.keys(vocabData).find(k => k.toLowerCase() === lower) || match;
+                const tip = buildTooltip(vocabKey);
                 if (!tip) return match;
                 return `<span class="vocab">${match}<span class="tooltip">${tip}</span></span>`;
             });
@@ -464,8 +547,8 @@ const data = [
     }
 ];
 
-const enContainer = document.getElementById('en-container');
-const zhContainer = document.getElementById('zh-container');
+const enContainer = document.getElementById("en-container");
+const zhContainer = document.getElementById("zh-container");
 
 let currentPage = 0;
 let globalSentenceId = 0;
@@ -473,14 +556,14 @@ let globalSentenceId = 0;
 data.forEach((item, paraIdx) => {
     if (item.page !== currentPage) {
         currentPage = item.page;
-        const enMarker = document.createElement('div');
-        enMarker.className = 'page-marker';
-        enMarker.textContent = 'Page ' + currentPage;
+        const enMarker = document.createElement("div");
+        enMarker.className = "page-marker";
+        enMarker.textContent = "Page " + currentPage;
         enContainer.appendChild(enMarker);
 
-        const zhMarker = document.createElement('div');
-        zhMarker.className = 'page-marker';
-        zhMarker.textContent = '第 ' + currentPage + ' 页';
+        const zhMarker = document.createElement("div");
+        zhMarker.className = "page-marker";
+        zhMarker.textContent = "第 " + currentPage + " 页";
         zhContainer.appendChild(zhMarker);
     }
 
@@ -488,8 +571,8 @@ data.forEach((item, paraIdx) => {
     const zhSentences = splitZh(item.zh);
     const minCount = Math.min(enSentences.length, zhSentences.length);
 
-    let enHtml = '';
-    let zhHtml = '';
+    let enHtml = "";
+    let zhHtml = "";
 
     for (let i = 0; i < minCount; i++) {
         enHtml += `<span class="sentence" data-sid="${globalSentenceId}">${highlightVocab(enSentences[i])}</span> `;
@@ -498,42 +581,42 @@ data.forEach((item, paraIdx) => {
     }
 
     if (enSentences.length > minCount) {
-        const extra = enSentences.slice(minCount).join(' ');
+        const extra = enSentences.slice(minCount).join(" ");
         enHtml += `<span class="sentence" data-sid="${globalSentenceId - 1}"> ${highlightVocab(extra)}</span>`;
     }
     if (zhSentences.length > minCount) {
-        const extra = zhSentences.slice(minCount).join('');
+        const extra = zhSentences.slice(minCount).join("");
         zhHtml += `<span class="sentence" data-sid="${globalSentenceId - 1}">${extra}</span>`;
     }
 
-    const enPara = document.createElement('div');
-    enPara.className = 'paragraph';
+    const enPara = document.createElement("div");
+    enPara.className = "paragraph";
     enPara.innerHTML = enHtml.trim();
     enContainer.appendChild(enPara);
 
-    const zhPara = document.createElement('div');
-    zhPara.className = 'paragraph';
+    const zhPara = document.createElement("div");
+    zhPara.className = "paragraph";
     zhPara.innerHTML = zhHtml.trim();
     zhContainer.appendChild(zhPara);
 });
 
-document.getElementById('font-select').addEventListener('change', function() {
-    document.querySelectorAll('.column-left .paragraph').forEach(p => {
+document.getElementById("font-select").addEventListener("change", function() {
+    document.querySelectorAll(".column-left .paragraph").forEach(p => {
         p.style.fontFamily = this.value;
     });
 });
 
-document.querySelectorAll('.sentence').forEach(s => {
-    s.addEventListener('mouseenter', () => {
+document.querySelectorAll(".sentence").forEach(s => {
+    s.addEventListener("mouseenter", () => {
         const sid = s.dataset.sid;
         document.querySelectorAll(`.sentence[data-sid="${sid}"]`).forEach(match => {
-            match.classList.add('highlight');
+            match.classList.add("highlight");
         });
     });
-    s.addEventListener('mouseleave', () => {
+    s.addEventListener("mouseleave", () => {
         const sid = s.dataset.sid;
         document.querySelectorAll(`.sentence[data-sid="${sid}"]`).forEach(match => {
-            match.classList.remove('highlight');
+            match.classList.remove("highlight");
         });
     });
 });
